@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-popover v-model="popgoogleChatWebhookUrlVisible" :class="{ 'is-invalid': !popgoogleChatWebhookUrlValid }">
-      <template v-slot:reference>
+      <template #reference>
         <span class="pop-trigger">
           <el-tooltip v-if="googleChatWebhookUrl.length" :content="googleChatWebhookUrl.join(', ')" placement="top">
             <span>GoogleChatWebhookUrls ({{ googleChatWebhookUrl.length }})</span>
@@ -97,6 +97,7 @@
 
 export default {
   props: ['viewOnly'],
+  emits: ['validate'],
 
   data() {
     return {

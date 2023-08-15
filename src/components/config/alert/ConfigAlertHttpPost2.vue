@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-popover v-model="popHttpPost2UrlVisible" :class="{ 'is-invalid': !popHttpPost2UrlValid }">
-      <template v-slot:reference>
+      <template #reference>
         <span class="pop-trigger">
           <el-tooltip v-if="httpPost2Url.length" :content="httpPost2Url.join(', ')" placement="top">
             <span>HttpPost2Urls ({{ httpPost2Url.length }})</span>
@@ -85,6 +85,7 @@
 <script>
 export default {
   props: ['viewOnly'],
+  emits: ['validate'],
 
   data() {
     return {

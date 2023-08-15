@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-popover v-model="popMsTeaMsWebhookUrlVisible" :class="{ 'is-invalid': !popMsTeamsWebhookUrlValid }">
-      <template v-slot:reference>
+      <template #reference>
         <span class="pop-trigger">
           <el-tooltip v-if="msTeamsWebhookUrl.length" :content="msTeamsWebhookUrl.join(', ')" placement="top">
             <span>MsTeamsWebhookUrls ({{ msTeamsWebhookUrl.length }})</span>
@@ -117,6 +117,7 @@
 <script>
 export default {
   props: ['viewOnly'],
+  emits: ['validate'],
 
   data() {
     return {
