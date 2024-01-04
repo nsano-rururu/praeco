@@ -1,6 +1,6 @@
 export const ruleYaml = `__praeco_query_builder: '{"query":{"logicalOperator":"all","children":[]}}'
 alert:
-  - telegram
+  - iris
 alert_subject: this is a test subject
 alert_subject_args: []
 alert_text: this is a test body
@@ -13,17 +13,14 @@ filter:
         query: '@timestamp:*'
 import: BaseRule.config
 index: hannibal-*
+iris_host: testserver
+iris_api_token: abcdefghijklmnopqrstuvwxyz
 is_enabled: false
 name: test123
 num_events: 10000
+query_key: beat.hostname
 realert:
   minutes: 5
-telegram_parse_mode: html
-telegram_proxy: hostname:8080
-telegram_proxy_login: user
-telegram_proxy_pass: password
-telegram_room_id: http://testserver
-telegram_thread_id: 123456789
 timeframe:
   minutes: 5
 timestamp_field: '@timestamp'

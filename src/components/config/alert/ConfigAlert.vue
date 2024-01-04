@@ -10,7 +10,7 @@
         <ConfigAggregation ref="aggregation" :view-only="viewOnly" />
       </el-col>
       <el-col v-if="!aggregationSchedule" :span="12">
-        <el-form-item :class="{'view-only': viewOnly }" label="Re-alert">
+        <el-form-item :class="{ 'view-only': viewOnly }" label="Re-alert">
           <ElastalertTimeView v-if="viewOnly" :time="realert" />
           <ElastalertTimePicker
             v-else-if="realert"
@@ -192,39 +192,43 @@
         <el-checkbox id="destinationLark" label="lark" border>
           Lark
         </el-checkbox>
+        <el-checkbox id="destinationIris" label="iris" border>
+          IRIS
+        </el-checkbox>
       </el-checkbox-group>
     </el-form-item>
 
     <el-tabs v-if="alert.length" v-model="visibleTabPane" class="border-card-plain m-n-sm" type="card">
       <el-tab-pane
-        v-if="alert.includes('alerta') ||
-          alert.includes('alertmanager') ||
-          alert.includes('chatwork') ||
-          alert.includes('datadog') ||
-          alert.includes('dingtalk') ||
-          alert.includes('discord') ||
-          alert.includes('email') ||
-          alert.includes('gitter') ||
-          alert.includes('googlechat') ||
-          alert.includes('hivealerter') ||
-          alert.includes('jira') ||
-          alert.includes('lark') ||
-          alert.includes('linenotify') ||
-          alert.includes('mattermost') ||
-          alert.includes('ms_teams') ||
-          alert.includes('opsgenie') ||
-          alert.includes('pagerduty') ||
-          alert.includes('pagertree') ||
-          alert.includes('rocketchat') ||
-          alert.includes('servicenow') ||
-          alert.includes('ses') ||
-          alert.includes('slack') ||
-          alert.includes('sns') ||
-          alert.includes('stomp') ||
-          alert.includes('tencent_sms') ||
-          alert.includes('victorops') ||
-          alert.includes('gelf') ||
-          alert.includes('telegram')">
+        v-if="alert.includes('alerta')
+          || alert.includes('alertmanager')
+          || alert.includes('chatwork')
+          || alert.includes('datadog')
+          || alert.includes('dingtalk')
+          || alert.includes('discord')
+          || alert.includes('email')
+          || alert.includes('gitter')
+          || alert.includes('googlechat')
+          || alert.includes('hivealerter')
+          || alert.includes('iris')
+          || alert.includes('jira')
+          || alert.includes('lark')
+          || alert.includes('linenotify')
+          || alert.includes('mattermost')
+          || alert.includes('ms_teams')
+          || alert.includes('opsgenie')
+          || alert.includes('pagerduty')
+          || alert.includes('pagertree')
+          || alert.includes('rocketchat')
+          || alert.includes('servicenow')
+          || alert.includes('ses')
+          || alert.includes('slack')
+          || alert.includes('sns')
+          || alert.includes('stomp')
+          || alert.includes('tencent_sms')
+          || alert.includes('victorops')
+          || alert.includes('gelf')
+          || alert.includes('telegram')">
         <template #label>
           <Icon :icon="['fa', 'bell']" size="1x" /> Alert
         </template>
@@ -505,6 +509,14 @@
         </template>
         <ConfigAlertLark ref="lark" :view-only="viewOnly" />
       </el-tab-pane>
+
+      <!-- IRIS -->
+      <el-tab-pane v-if="alert.includes('iris')">
+        <template #label>
+          IRIS
+        </template>
+        <ConfigAlertIris ref="iris" :view-only="viewOnly" />
+      </el-tab-pane>
     </el-tabs>
   </el-form>
 </template>
@@ -529,6 +541,7 @@ import ConfigAlertGitter from './ConfigAlertGitter';
 import ConfigAlertGoogleChat from './ConfigAlertGoogleChat';
 import ConfigAlertHttpPost from './ConfigAlertHttpPost';
 import ConfigAlertHttpPost2 from './ConfigAlertHttpPost2';
+import ConfigAlertIris from './ConfigAlertIris';
 import ConfigAlertJira from './ConfigAlertJira';
 import ConfigAlertLark from './ConfigAlertLark';
 import ConfigAlertLineNotify from './ConfigAlertLineNotify';
@@ -647,6 +660,7 @@ export default {
     ConfigAlertGoogleChat,
     ConfigAlertHttpPost,
     ConfigAlertHttpPost2,
+    ConfigAlertIris,
     ConfigAlertJira,
     ConfigAlertLark,
     ConfigAlertLineNotify,

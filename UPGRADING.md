@@ -7,6 +7,28 @@
 
 Some version upgrades require further configuration. Version specific upgrade instructions are below.
 
+## -> 1.8.18
+
+**New options**
+
+**IRIS**
+
+**Telegram**
+
+add settings.
+
+- telegram_thread_id
+
+## -> 1.8.17
+
+**New options**
+
+**Lark**
+
+**kibana discover**
+
+- kibana 8.9 - 8.11 support
+
 ## -> 1.8.16
 
 **Chage UI**
@@ -111,7 +133,6 @@ add settings.
 - alerta_use_match_timestamp
 - alerta_use_qk_as_resource
 - alerta_api_skip_ssl
-- alert_missing_value
 - alerta_origin
 - alerta_service
 - alerta_type
