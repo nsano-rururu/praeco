@@ -3,12 +3,10 @@ import store from '@/store';
 import { mockAxios } from '../../setup';
 import { ruleYaml } from '../../mockData/alert/ruleDataEmail.js';
 
-mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
-
-describe('Alerta YAML parsing', () => {
+describe('Email YAML parsing', () => {
   it('renders the correct yaml', async () => {
+    mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
     await store.dispatch('config/load', { type: 'rules', path: 'test123' });
-
     let yaml = store.getters['config/yaml']();
 
     let expected = `__praeco_full_path: "test123"
@@ -33,7 +31,6 @@ filter:
       query_string:
         query: "@timestamp:*"
 from_addr: "abc"
-generate_kibana_discover_url: false
 import: "BaseRule.config"
 index: "hannibal-*"
 is_enabled: false

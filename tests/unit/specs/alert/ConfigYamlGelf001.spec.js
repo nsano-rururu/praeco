@@ -3,12 +3,10 @@ import store from '@/store';
 import { mockAxios } from '../../setup';
 import { ruleYaml } from '../../mockData/alert/ruleDataGelf001.js';
 
-mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
-
-describe('Gelf  001 YAML parsing', () => {
+describe('Gelf 001 YAML parsing', () => {
   it('renders the correct yaml', async () => {
+    mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
     await store.dispatch('config/load', { type: 'rules', path: 'test123' });
-
     let yaml = store.getters['config/yaml']();
 
     let expected = `__praeco_full_path: "test123"
@@ -29,7 +27,6 @@ gelf_http_ignore_ssl_errors: true
 gelf_log_level: 0
 gelf_timeout: 10
 gelf_type: "http"
-generate_kibana_discover_url: false
 import: "BaseRule.config"
 index: "hannibal-*"
 is_enabled: false

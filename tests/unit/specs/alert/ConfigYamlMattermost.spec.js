@@ -3,12 +3,11 @@ import store from '@/store';
 import { mockAxios } from '../../setup';
 import { ruleYaml } from '../../mockData/alert/ruleDataMattermost.js';
 
-mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
-
+// TODO: Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
 describe('Mattermost YAML parsing', () => {
   it('renders the correct yaml', async () => {
+    mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
     await store.dispatch('config/load', { type: 'rules', path: 'test123' });
-
     let yaml = store.getters['config/yaml']();
 
     let expected = `__praeco_full_path: "test123"
@@ -23,17 +22,13 @@ filter:
   - query:
       query_string:
         query: "@timestamp:*"
-generate_kibana_discover_url: false
 import: "BaseRule.config"
 index: "hannibal-*"
 is_enabled: false
 match_enhancements: []
-mattermost_attach_kibana_discover_url: false
 mattermost_channel_override:
   - "#elastalert-debugging"
 mattermost_emoji_override: ":ghost:"
-mattermost_kibana_discover_color: "#ec4b98"
-mattermost_kibana_discover_title: "Discover in Kibana"
 mattermost_msg_color: "danger"
 mattermost_username_override: "elastalert"
 mattermost_webhook_url:

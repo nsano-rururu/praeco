@@ -3,12 +3,10 @@ import store from '@/store';
 import { mockAxios } from '../../setup';
 import { ruleYaml } from '../../mockData/alert/ruleDataMsTeams.js';
 
-mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
-
 describe('MsTeams YAML parsing', () => {
   it('renders the correct yaml', async () => {
+    mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
     await store.dispatch('config/load', { type: 'rules', path: 'test123' });
-
     let yaml = store.getters['config/yaml']();
 
     let expected = `__praeco_full_path: "test123"
@@ -23,14 +21,11 @@ filter:
   - query:
       query_string:
         query: "@timestamp:*"
-generate_kibana_discover_url: false
 import: "BaseRule.config"
 index: "hannibal-*"
 is_enabled: false
 match_enhancements: []
 ms_teams_alert_summary: "ElastAlert Message"
-ms_teams_attach_kibana_discover_url: false
-ms_teams_kibana_discover_title: "Discover in Kibana"
 ms_teams_webhook_url:
   - "https://xxxxxxxxxxxxxxxxxxxxxx/xxxx"
 name: "test123"

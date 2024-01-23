@@ -3,12 +3,10 @@ import store from '@/store';
 import { mockAxios } from '../../setup';
 import { ruleYaml } from '../../mockData/alert/ruleDataHttpPost2Opt.js';
 
-mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
-
 describe('HttpPost2Opt YAML parsing', () => {
   it('renders the correct yaml', async () => {
+    mockAxios.onGet('/api/rules/test123').reply(200, { yaml: ruleYaml });
     await store.dispatch('config/load', { type: 'rules', path: 'test123' });
-
     let yaml = store.getters['config/yaml']();
 
     let expected = `__praeco_full_path: "test123"
@@ -20,7 +18,6 @@ filter:
   - query:
       query_string:
         query: "@timestamp:*"
-generate_kibana_discover_url: false
 http_post2_ca_certs: "/etc/certs/cert.pem"
 http_post2_ignore_ssl_errors: true
 http_post2_proxy: "host:8080"
